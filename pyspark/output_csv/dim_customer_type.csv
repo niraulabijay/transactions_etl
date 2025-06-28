@@ -1,0 +1,4 @@
+CustomerType,Segment,CustomerTypeKey
+Retail,B2C,0
+Wholesale,B2B,1
+N/A,N/A,-1

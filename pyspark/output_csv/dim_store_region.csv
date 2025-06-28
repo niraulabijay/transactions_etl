@@ -1,0 +1,6 @@
+StoreRegion,Territory,StoreRegionKey
+North,A,0
+South,B,1
+East,C,2
+West,D,3
+N/A,N/A,-1

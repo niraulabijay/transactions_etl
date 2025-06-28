@@ -1,0 +1,5 @@
+ProductCategory,CategoryGroup,ProductCategoryKey
+Laptop,Computing,0
+Mobile,Electronics,1
+Tablet,Computing,2
+N/A,N/A,-1
