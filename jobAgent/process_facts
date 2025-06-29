@@ -1,0 +1,11 @@
+{
+  "refresh": {
+    "type": "full",
+    "objects": [
+      {
+        "database": "TransactionModel",
+        "table": "Transactions"
+      }
+    ]
+  }
+}

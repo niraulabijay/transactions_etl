@@ -1,0 +1,23 @@
+{
+  "refresh": {
+    "type": "full",
+    "objects": [
+      {
+        "database": "TransactionModel",
+        "table": "Custom Mapping"
+      },
+      {
+        "database": "TransactionModel",
+        "table": "Customer Type"
+      },
+      {
+        "database": "TransactionModel",
+        "table": "Product Category"
+      },
+      {
+        "database": "TransactionModel",
+        "table": "Store Region"
+      }
+    ]
+  }
+}
