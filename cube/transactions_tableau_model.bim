@@ -1,0 +1,324 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "dataSources": [
+      {
+        "name": "BIZZAY LUCIDEX",
+        "connectionString": "Data Source=BIZZAY;Initial Catalog=LUCIDEX;Integrated Security=True",
+        "impersonationMode": "impersonateServiceAccount",
+        "provider": "System.Data.SqlClient"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Custom Mapping",
+        "columns": [
+          {
+            "name": "ProductCategory",
+            "dataType": "string",
+            "sourceColumn": "ProductCategory",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "StoreRegion",
+            "dataType": "string",
+            "sourceColumn": "StoreRegion",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "MappingLabel",
+            "dataType": "string",
+            "sourceColumn": "MappingLabel",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "Priority",
+            "dataType": "int64",
+            "sourceColumn": "Priority",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "CustomMappingKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomMappingKey",
+            "sourceProviderType": "int"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "cube_custom_mapping",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "\t*",
+                "FROM",
+                "\t[ETL].[cube_custom_mapping]"
+              ],
+              "dataSource": "BIZZAY LUCIDEX"
+            },
+            "annotations": [
+              {
+                "name": "TabularEditor_TableSchema",
+                "value": "{\"Name\":\"cube_custom_mapping\",\"Schema\":\"ETL\",\"Database\":\"LUCIDEX\",\"IncludedColumns\":[\"ProductCategory\",\"StoreRegion\",\"CustomerType\",\"MappingLabel\",\"Priority\",\"CustomMappingKey\"],\"SelectAll\":true}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Customer Type",
+        "columns": [
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "Segment",
+            "dataType": "string",
+            "sourceColumn": "Segment",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "CustomerTypeKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerTypeKey",
+            "sourceProviderType": "int"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "cube_customer_type",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "\t*",
+                "FROM",
+                "\t[ETL].[cube_customer_type]"
+              ],
+              "dataSource": "BIZZAY LUCIDEX"
+            },
+            "annotations": [
+              {
+                "name": "TabularEditor_TableSchema",
+                "value": "{\"Name\":\"cube_customer_type\",\"Schema\":\"ETL\",\"Database\":\"LUCIDEX\",\"IncludedColumns\":[\"CustomerType\",\"Segment\",\"CustomerTypeKey\"],\"SelectAll\":true}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Transactions",
+        "columns": [
+          {
+            "name": "TransactionID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "TransactionID",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "Amount",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Amount",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "ProductCategoryKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductCategoryKey",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "StoreRegionKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "StoreRegionKey",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "CustomerTypeKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerTypeKey",
+            "sourceProviderType": "int"
+          },
+          {
+            "name": "CustomMappingKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomMappingKey",
+            "sourceProviderType": "int"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "cube_fact_transactions",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "\t*",
+                "FROM",
+                "\t[ETL].[cube_fact_transactions]"
+              ],
+              "dataSource": "BIZZAY LUCIDEX"
+            },
+            "annotations": [
+              {
+                "name": "TabularEditor_TableSchema",
+                "value": "{\"Name\":\"cube_fact_transactions\",\"Schema\":\"ETL\",\"Database\":\"LUCIDEX\",\"IncludedColumns\":[\"TransactionID\",\"Amount\",\"ProductCategoryKey\",\"StoreRegionKey\",\"CustomerTypeKey\",\"CustomMappingKey\"],\"SelectAll\":true}"
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Transactions",
+            "expression": "SUM('Transactions'[Amount])"
+          }
+        ]
+      },
+      {
+        "name": "Product Category",
+        "columns": [
+          {
+            "name": "ProductCategory",
+            "dataType": "string",
+            "sourceColumn": "ProductCategory",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "CategoryGroup",
+            "dataType": "string",
+            "sourceColumn": "CategoryGroup",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "ProductCategoryKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductCategoryKey",
+            "sourceProviderType": "int"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "cube_product_category",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "\t*",
+                "FROM",
+                "\t[ETL].[cube_product_category]"
+              ],
+              "dataSource": "BIZZAY LUCIDEX"
+            },
+            "annotations": [
+              {
+                "name": "TabularEditor_TableSchema",
+                "value": "{\"Name\":\"cube_product_category\",\"Schema\":\"ETL\",\"Database\":\"LUCIDEX\",\"IncludedColumns\":[\"ProductCategory\",\"CategoryGroup\",\"ProductCategoryKey\"],\"SelectAll\":true}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Store Region",
+        "columns": [
+          {
+            "name": "StoreRegion",
+            "dataType": "string",
+            "sourceColumn": "StoreRegion",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "Territory",
+            "dataType": "string",
+            "sourceColumn": "Territory",
+            "sourceProviderType": "varchar"
+          },
+          {
+            "name": "StoreRegionKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "StoreRegionKey",
+            "sourceProviderType": "int"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "cube_store_region",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "\t*",
+                "FROM",
+                "\t[ETL].[cube_store_region]"
+              ],
+              "dataSource": "BIZZAY LUCIDEX"
+            },
+            "annotations": [
+              {
+                "name": "TabularEditor_TableSchema",
+                "value": "{\"Name\":\"cube_store_region\",\"Schema\":\"ETL\",\"Database\":\"LUCIDEX\",\"IncludedColumns\":[\"StoreRegion\",\"Territory\",\"StoreRegionKey\"],\"SelectAll\":true}"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "1bcd20f9-59a9-48d0-8c28-c39a65cc8abc",
+        "fromTable": "Transactions",
+        "fromColumn": "CustomerTypeKey",
+        "toTable": "Customer Type",
+        "toColumn": "CustomerTypeKey"
+      },
+      {
+        "name": "853d6509-e3f7-4379-9616-fe853dd9bc11",
+        "fromTable": "Transactions",
+        "fromColumn": "CustomMappingKey",
+        "toTable": "Custom Mapping",
+        "toColumn": "CustomMappingKey"
+      },
+      {
+        "name": "3b4eea54-30a7-4566-aa69-192a90c7f25e",
+        "fromTable": "Transactions",
+        "fromColumn": "ProductCategoryKey",
+        "toTable": "Product Category",
+        "toColumn": "ProductCategoryKey"
+      },
+      {
+        "name": "2591c93a-929b-4a5c-8a8b-8d3f91c0fb66",
+        "fromTable": "Transactions",
+        "fromColumn": "StoreRegionKey",
+        "toTable": "Store Region",
+        "toColumn": "StoreRegionKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "TabularEditor_SerializeOptions",
+        "value": "{\"IgnoreInferredObjects\":true,\"IgnoreInferredProperties\":true,\"IgnoreTimestamps\":true,\"SplitMultilineStrings\":true,\"PrefixFilenames\":false,\"LocalTranslations\":false,\"LocalPerspectives\":false,\"LocalRelationships\":false,\"Levels\":[\"Data Sources\",\"Shared Expressions\",\"Perspectives\",\"Relationships\",\"Roles\",\"Tables\",\"Tables/Columns\",\"Tables/Hierarchies\",\"Tables/Measures\",\"Tables/Partitions\",\"Tables/Calculation Items\",\"Translations\"]}"
+      }
+    ]
+  }
+}
